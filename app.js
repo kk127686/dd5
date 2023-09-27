@@ -15,16 +15,10 @@ app.get("/",function(req,res){
 app.get("/list",function(req,res){
 	db.query("SELECT * FROM students",function(err,data){
 		if(err){
-			console.log("数据库访问出错",err);
-	    res.send(err)
+	    		res.send(err)
 		}else{
-			console.log(data);
-	    res.send(data);
+	    		res.send(data);
 		}
 	})
-	res.send("express");
-});
-app.get("/info",function(req,res){
-	res.send(mysqlOptions);
 });
 app.listen(8080);
