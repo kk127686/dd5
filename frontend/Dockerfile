@@ -1,7 +1,7 @@
 FROM node:14.20.1 AS build
 WORKDIR /build
 COPY . .
-RUN npm i --registry=https://registry.npmmirror.com && npm run build
+RUN npm i --registry=https://registry.npmmirror.com && npm run build && apt-get install gettext-base -y
 RUN envsubst '${BACKEND_HOST}' < ./conf.d/default.conf.template > ./conf.d/default.conf
 
 FROM nginx:latest
