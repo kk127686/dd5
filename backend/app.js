@@ -21,7 +21,7 @@ app.get("/list",(req,res)=>{
 		}
 	})
 });
-app.post('/user/login',(req,resp)=>{
+app.post('/user/login',(req,res)=>{
 	res.send({"code":200,'msg':"ok","data":"1"})
 })
 app.listen(8080);
