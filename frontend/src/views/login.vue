@@ -24,7 +24,7 @@
   </el-card>
 </template>
 <script>
-import {userLogin} from '@/api/user'
+import { userLogin } from "@/api/user";
 export default {
   name: "userLogin",
   data() {
@@ -35,11 +35,16 @@ export default {
       },
       rules: {
         username: [
-            { required: true, message: '请输入用户名', trigger: 'blur' },
-            { min: 3, max: 15, message: '长度在 3 到 15 个字符', trigger: 'blur' }
+          { required: true, message: "请输入用户名", trigger: "blur" },
+          {
+            min: 3,
+            max: 15,
+            message: "长度在 3 到 15 个字符",
+            trigger: "blur",
+          },
         ],
         password: [
-            { required: true, message: '请输入用户名', trigger: 'blur' },
+          { required: true, message: "请输入用户名", trigger: "blur" },
         ],
       },
     };
@@ -48,14 +53,21 @@ export default {
     submitForm(form) {
       this.$refs[form].validate((valid) => {
         if (valid) {
-            userLogin(this.form).then(resp=>{
-                console.log(resp)
-            })
+          userLogin(this.form).then((resp) => {
+            if (resp.code === 200) {
+              this.$router.push({ path: this.redirect || "/" }).catch(() => {});
+            } else {
+              this.$message.error("密码错误");
+            }
+          });
         } else {
           console.log("error submit!!");
           return false;
         }
       });
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
     },
   },
 };

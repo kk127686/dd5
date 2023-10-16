@@ -3,8 +3,12 @@ import Vue from 'vue'
 Vue.use(VueRouter)
 const routes=[
     {
-        name:'login',
+        name:'index',
         path:'/',
+        component:()=>import('@/views/index.vue')
+    },{
+        name:'login',
+        path:'/login',
         component:()=>import('@/views/login.vue')
     }
 ]
