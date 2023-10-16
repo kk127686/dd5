@@ -9,10 +9,10 @@ const mysqlOptions={
 	database: process.env.MYSQL_DATABASE
 }
 var db=mysql.createConnection(mysqlOptions);
-app.get("/",function(req,res){
+app.get("/",(req,res)=>{
 	res.send({"code":200,"msg":"Hello,world"});
 });
-app.get("/list",function(req,res){
+app.get("/list",(req,res)=>{
 	db.query("SELECT * FROM students",function(err,data){
 		if(err){
 	    		res.send(err)
@@ -21,4 +21,7 @@ app.get("/list",function(req,res){
 		}
 	})
 });
+app.post('/user/login',(req,resp)=>{
+	res.send({"code":200,'msg':"ok","data":"1"})
+})
 app.listen(8080);
